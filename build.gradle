@@ -40,8 +40,8 @@ tasks.withType(JavaCompile) {
     options.compilerArgs << "-Xlint:all"
 }
 
-sourceCompatibility = '11'
-targetCompatibility = '11'
+sourceCompatibility = '8'
+targetCompatibility = '8'
 
 test {
     useJUnitPlatform()
