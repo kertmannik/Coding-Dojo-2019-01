@@ -1,7 +1,6 @@
 package bootstrap;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,12 +33,12 @@ class App {
                     .split(delimiter))
                     .map(Integer::parseInt)
                     .mapToInt(Integer::intValue)
-                    .filter(number -> isBiggerThan(1000, number))
+                    .filter(number -> isSmallerThan(1000, number))
                     .sum();
         }
     }
 
-    private boolean isBiggerThan(int limit, int number) {
+    private boolean isSmallerThan(int limit, int number) {
         return limit > number;
     }
 }
