@@ -28,7 +28,7 @@ class App {
                     .filter(number -> number.startsWith("-"))
                     .collect(Collectors.toList());
 
-            if (0 < negativeNumbers.size()) throw new Exception(String.join(",",negativeNumbers));
+            if (negativeNumbers.isEmpty()) throw new Exception(String.join(",",negativeNumbers));
 
             return Arrays.stream(actualInput.replace("\n",delimiter)
                     .split(delimiter))
