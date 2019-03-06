@@ -1,19 +1,11 @@
-package bootstrap;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class App {
-
-    public static void main(String[] args) {
-        System.out.println("Hello world");
-    }
+class StringCalculator {
 
     public int add(String numbers) throws Exception {
-        if (numbers.isEmpty()) {
-            return 0;
-        } else {
+        if (!numbers.isEmpty()) {
             String delimiter = ",";
             String actualInput = numbers;
 
@@ -22,19 +14,23 @@ class App {
                 actualInput = actualInput.substring(3 + delimiter.length());
             }
 
-             List<String> negativeNumbers = Arrays.stream(actualInput.replace("\n",delimiter)
-                    .split(delimiter))
-                    .filter(number -> number.startsWith("-"))
-                    .collect(Collectors.toList());
+            String[] refactoredList = actualInput.replace("\n", delimiter).split(delimiter);
+
+            List<String> negativeNumbers = Arrays
+                     .stream(refactoredList)
+                     .filter(number -> number.startsWith("-"))
+                     .collect(Collectors.toList());
 
             if (!negativeNumbers.isEmpty()) throw new Exception(String.join(",",negativeNumbers));
 
-            return Arrays.stream(actualInput.replace("\n",delimiter)
-                    .split(delimiter))
+            return Arrays
+                    .stream(refactoredList)
                     .map(Integer::parseInt)
                     .mapToInt(Integer::intValue)
                     .filter(number -> isSmallerThan(1000, number))
                     .sum();
+        } else {
+            return 0;
         }
     }
 
